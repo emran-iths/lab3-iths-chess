@@ -7,24 +7,26 @@ import { useState, useEffect } from "react";
 let gameId = "r5vTXSNZs73N";
 
 let preparedGames = new Set();
-let gameListeners = new Set();
+let gameListeners: { [id: string]: Set<any> } = {};
 
-const prepareGame = (gameId : string) => {
+const prepareGame = (gameId: string) => {
   if (preparedGames.has(gameId)) return;
   preparedGames.add(gameId);
+  gameListeners[gameId] = new Set();
 
   console.log(`connects to game ${gameId}`);
   gameStream(gameId, (data) => {
-    gameListeners.forEach((f : any) => {
+    gameListeners[gameId].forEach((f: any) => {
       f(data);
     });
 
-    gameListeners.clear();
+    gameListeners[gameId].clear();
   });
 };
 
-const listenToGame = (callback : any) => {
-  gameListeners.add(callback);
+const listenToGame = (callback: any) => {
+  if (!(gameId in gameListeners)) return;
+  gameListeners[gameId].add(callback);
 };
 
 export default function Home() {
@@ -34,7 +36,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    listenToGame((data : any) => {
+    listenToGame((data: any) => {
       console.log(data);
       setLog(log.concat(data));
     });
