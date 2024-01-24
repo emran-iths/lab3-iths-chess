@@ -1,10 +1,9 @@
 "use client";
 
 import styles from "./page.module.css";
-import gameStream from "./GameStream";
+import gameStream from "../GameStream";
 import { useState, useEffect } from "react";
-
-let gameId = "r5vTXSNZs73N";
+import { useSearchParams } from "next/navigation";
 
 let preparedGames = new Set();
 let gameListeners: { [id: string]: Set<any> } = {};
@@ -24,19 +23,21 @@ const prepareGame = (gameId: string) => {
   });
 };
 
-const listenToGame = (callback: any) => {
+const listenToGame = (gameId: string, callback: any) => {
   if (!(gameId in gameListeners)) return;
   gameListeners[gameId].add(callback);
 };
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const gameId = searchParams.get("gameId");
   const [log, setLog] = useState([]);
   useEffect(() => {
     prepareGame(gameId);
   }, []);
 
   useEffect(() => {
-    listenToGame((data: any) => {
+    listenToGame(gameId, (data: any) => {
       console.log(data);
       setLog(log.concat(data));
     });
