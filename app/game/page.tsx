@@ -49,11 +49,7 @@ export default function Home() {
   return (
     <>
       <ChessBoard />
-      <ul>
-        {log.map((c, i) => (
-          <li key={i}>{c}</li>
-        ))}
-      </ul>
+
       <input
         type="text"
         value={move}
@@ -61,6 +57,7 @@ export default function Home() {
           setMove(e.target.value);
         }}
       />
+
       <button
         onClick={() => {
           const url = `https://lichess.org/api/bot/game/${gameId}/move/${move}`;
@@ -76,6 +73,12 @@ export default function Home() {
       >
         send
       </button>
+
+      <ul>
+        {log.map((c, i) => (
+          <li key={i}>{c}</li>
+        ))}
+      </ul>
     </>
   );
 }
