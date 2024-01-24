@@ -42,11 +42,37 @@ export default function Home() {
     });
   }, [log]);
 
+  const [move, setMove] = useState("");
+
   return (
-    <ul>
-      {log.map((c, i) => (
-        <li key={i}>{c}</li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {log.map((c, i) => (
+          <li key={i}>{c}</li>
+        ))}
+      </ul>
+      <input
+        type="text"
+        value={move}
+        onChange={(e) => {
+          setMove(e.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          const url = `https://lichess.org/api/bot/game/${gameId}/move/${move}`;
+          console.log(url);
+          fetch(url, {
+            method: "post",
+
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_LICHESS_TOKEN}`,
+            },
+          });
+        }}
+      >
+        send
+      </button>
+    </>
   );
 }
