@@ -5,12 +5,14 @@ import { useState } from "react";
 import Link from "next/link";
 import ChessPiece from "./components/ChessPiece";
 import ChessSquare from "./components/ChessSquare";
+import ChessBoard from "./components/ChessBoard";
 
 export default function Home() {
   const [startedGame, setStartedGame] = useState(null);
 
   return (
     <>
+      <ChessBoard />
       <ChessPiece type="b-king" />
       <ChessSquare name="e4" piece="w-queen" />
       <button
