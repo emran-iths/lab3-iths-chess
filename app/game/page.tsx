@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 let preparedGames = new Set();
 let gameListeners: { [id: string]: Set<any> } = {};
 
-const prepareGame = (gameId: string) => {
+const prepareGame = (gameId: any) => {
   if (preparedGames.has(gameId)) return;
   preparedGames.add(gameId);
   gameListeners[gameId] = new Set();
@@ -23,7 +23,7 @@ const prepareGame = (gameId: string) => {
   });
 };
 
-const listenToGame = (gameId: string, callback: any) => {
+const listenToGame = (gameId: any, callback: any) => {
   if (!(gameId in gameListeners)) return;
   gameListeners[gameId].add(callback);
 };
