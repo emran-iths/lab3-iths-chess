@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import gameStream from "../GameStream";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import ChessBoard from "../components/ChessBoard";
 
 let preparedGames = new Set();
 let gameListeners: { [id: string]: Set<any> } = {};
@@ -47,6 +48,7 @@ export default function Home() {
 
   return (
     <>
+      <ChessBoard />
       <ul>
         {log.map((c, i) => (
           <li key={i}>{c}</li>
