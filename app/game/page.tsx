@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
     <>
-      <ChessBoard />
+      <ChessBoard onClickSquare={(name) => setMove(move + name)} />
 
       <input
         type="text"
@@ -69,6 +69,8 @@ export default function Home() {
               Authorization: `Bearer ${process.env.NEXT_PUBLIC_LICHESS_TOKEN}`,
             },
           });
+
+          setMove("");
         }}
       >
         send

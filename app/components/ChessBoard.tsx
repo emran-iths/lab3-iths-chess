@@ -22,7 +22,17 @@ const Inner = (props: any) => {
             <tr key={i}>
               {" "}
               {a.map((b, l) => {
-                return <ChessSquare piece={sp[b]} key={i + "," + l} name={b} />;
+                return (
+                  <ChessSquare
+                    piece={sp[b]}
+                    key={i + "," + l}
+                    name={b}
+                    onClick={() => {
+                      console.log("c");
+                      props.onClickSquare(b);
+                    }}
+                  />
+                );
               })}{" "}
             </tr>
           );
