@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import { useState } from "react";
 import Link from "next/link";
 import ChessPiece from "./components/ChessPiece";
+import ChessSquare from "./components/ChessSquare";
 
 export default function Home() {
   const [startedGame, setStartedGame] = useState(null);
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <>
       <ChessPiece type="b-king" />
+      <ChessSquare name="e4" piece="w-queen" />
       <button
         onClick={() => {
           const url = `https://lichess.org/api/challenge/ai`;
