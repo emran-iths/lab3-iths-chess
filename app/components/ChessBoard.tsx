@@ -10,9 +10,7 @@ const squares = numbers.reverse().map((i, d) => {
 });
 
 const Inner = (props: any) => {
-  const sp: { [key: string]: string } = JSON.parse(
-    JSON.stringify(initialState),
-  );
+  const sp: { [key: string]: string } = JSON.parse(JSON.stringify(props.state));
 
   const makeInnerTableBody = (): ReactNode => {
     return (

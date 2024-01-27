@@ -6,6 +6,6 @@ import ChessBoard from "../app/components/ChessBoard";
 
 describe("ChessBoard", () => {
   it("render a chess board without getting any errors", () => {
-    render(<ChessBoard onClickSquare={() => {}} />);
+    render(<ChessBoard onClickSquare={() => {}} state={{}} />);
   });
 });
