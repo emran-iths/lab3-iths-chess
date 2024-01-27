@@ -1,7 +1,12 @@
 import React from "react";
-
+import ChessBoard from "../../app/components/ChessBoard";
 const Post = ({ slug }) => {
-  return <div>TODO: show chess board template of: {slug}</div>;
+  return (
+    <div>
+      TODO: show chess board template of: {slug}.{" "}
+      <ChessBoard onClickSquare={() => {}} />
+    </div>
+  );
 };
 
 export const getStaticPaths = async () => {
