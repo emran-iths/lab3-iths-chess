@@ -21,7 +21,7 @@ const Inner = (props: any) => {
               {a.map((b, l) => {
                 return (
                   <ChessSquare
-                    piece={sp[b] ? sp[b] : null}
+                    piece={sp[b] ? sp[b] : ""}
                     key={i + "," + l}
                     name={b}
                     onClick={() => {
