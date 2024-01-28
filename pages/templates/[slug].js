@@ -4,7 +4,7 @@ const Post = ({ slug }) => {
   return (
     <div>
       TODO: show chess board template of: {slug}.{" "}
-      <ChessBoard onClickSquare={() => {}} />
+      <ChessBoard onClickSquare={() => {}} state={{ a1: "w-king" }} />
     </div>
   );
 };
