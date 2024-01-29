@@ -8,6 +8,7 @@ let preparedGames = new Set();
 let gameListeners: { [id: string]: Set<any> } = {};
 
 const prepareGame = (gameId: any) => {
+  if (gameId == null) return; // <-- there is some issue that gameId can be called as null. when that happens just ignore it
   if (preparedGames.has(gameId)) return;
   preparedGames.add(gameId);
   gameListeners[gameId] = new Set();
@@ -55,7 +56,7 @@ const GameController = (props: any) => {
       {props.gameId}
       <ChessBoard
         state={MovesToState(moves)}
-        onClickSquare={(name : string) => {
+        onClickSquare={(name: string) => {
           setMove(move + name);
         }}
       />

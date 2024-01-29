@@ -25,7 +25,6 @@ const Inner = (props: any) => {
                     key={i + "," + l}
                     name={b}
                     onClick={() => {
-                      console.log("c");
                       props.onClickSquare(b);
                     }}
                   />
