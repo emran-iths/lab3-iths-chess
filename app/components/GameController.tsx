@@ -55,7 +55,7 @@ const GameController = (props: any) => {
       {props.gameId}
       <ChessBoard
         state={MovesToState(moves)}
-        onClickSquare={(name) => {
+        onClickSquare={(name : string) => {
           setMove(move + name);
         }}
       />
