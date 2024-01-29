@@ -22,11 +22,12 @@ const Post = ({ slug }) => {
   );
 };
 
+export const templateNumbers = [...Array(3).keys()].map((n) => {
+  return (n + 1).toString();
+});
+
 export const getStaticPaths = async () => {
-  const numbers = [...Array(3).keys()].map((n) => {
-    return (n + 1).toString();
-  });
-  const paths = numbers.map((n) => {
+  const paths = templateNumbers.map((n) => {
     return { params: { slug: n } };
   });
 
