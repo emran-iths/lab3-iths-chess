@@ -1,6 +1,6 @@
 import initial_state from "./InitialState";
 
-const movesToState = (moves) => {
+const movesToState = (moves: string) => {
   //make a copy since we do not want to modify the original state
   let state = JSON.parse(JSON.stringify(initial_state));
 

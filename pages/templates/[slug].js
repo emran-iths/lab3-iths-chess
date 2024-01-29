@@ -1,10 +1,12 @@
 import React from "react";
 import ChessBoard from "../../app/components/ChessBoard";
+import movesToState from "../../app/MovesToState";
+
 const Post = ({ slug }) => {
   return (
     <div>
       TODO: show chess board template of: {slug}.{" "}
-      <ChessBoard onClickSquare={() => {}} state={{ a1: "w-king" }} />
+      <ChessBoard onClickSquare={() => {}} state={movesToState("e2e4")} />
     </div>
   );
 };

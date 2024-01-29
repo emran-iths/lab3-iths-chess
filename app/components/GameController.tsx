@@ -25,9 +25,7 @@ const listenToGame = (gameId: any, callback: any) => {
   gameListeners[gameId].add(callback);
 };
 
-const GameController = (props) => {
-  //return <>l{props.gameId}</>
-
+const GameController = (props: any) => {
   const [log, setLog] = useState([]);
 
   useEffect(() => {
