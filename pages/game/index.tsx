@@ -1,14 +1,10 @@
+"use client";
+
 import { useSearchParams } from "next/navigation";
-import Mover from "../../app/components/Mover";
-export default function Game() {
+import GameController from "../../app/components/GameController";
+
+export default function Home() {
   const searchParams = useSearchParams();
   const gameId = searchParams.get("id");
-
-  return (
-    <>
-      Game-id: {gameId}
-      <br />
-      <Mover gameId={gameId} />
-    </>
-  );
+  return <GameController gameId={gameId} />;
 }
