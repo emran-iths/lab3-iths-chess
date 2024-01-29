@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const StartButton = () => {
   const [startedGame, setStartedGame] = useState(null);
-
   return (
     <>
       <button
@@ -27,10 +27,14 @@ const StartButton = () => {
       </button>
 
       {startedGame && (
-        <>TODO: make link (and page) to game using this id {startedGame} as game id ref</>
+        <>
+          <Link href={`/game?id=${startedGame}`}>
+            Goto game ({startedGame})
+          </Link>
+        </>
       )}
     </>
   );
-}
+};
 
-export default StartButton
+export default StartButton;
