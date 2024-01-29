@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
 const Mover = (props: any) => {
-  const [move, setMove] = useState("");
   const gameId = props.gameId;
+
+  const [move, setMove] = props.state;
 
   return (
     <>

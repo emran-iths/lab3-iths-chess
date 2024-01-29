@@ -1,4 +1,6 @@
 import gameStream from "../../app/GameStream";
+import ChessBoard from "../../app/components/ChessBoard";
+import MovesToState from "../../app/MovesToState";
 import Mover from "./Mover";
 import { useState, useEffect } from "react";
 
@@ -27,21 +29,37 @@ const listenToGame = (gameId: any, callback: any) => {
 
 const GameController = (props: any) => {
   const [log, setLog] = useState([]);
-
+  const moveState = useState(""); // <-- the move input
+  const [moves, setMoves] = useState(""); // <-- the "moves-string" the describes all the move taken place
+  const [move, setMove] = moveState;
   useEffect(() => {
     prepareGame(props.gameId);
   }, [props.gameId]);
 
   useEffect(() => {
     listenToGame(props.gameId, (data: any) => {
+      let jdata = null;
+      if (data != "\n") jdata = JSON.parse(data);
+
+      if (jdata && jdata.state && jdata.state.moves)
+        setMoves(jdata.state.moves);
+      else if (jdata && jdata.moves) setMoves(jdata.moves);
+
       setLog(log.concat(data));
     });
-  }, [log]);
+  }, [log, moves]);
 
   return (
     <>
+      {moves}
       {props.gameId}
-      <Mover gameId={props.gameId} />
+      <ChessBoard
+        state={MovesToState(moves)}
+        onClickSquare={(name) => {
+          setMove(move + name);
+        }}
+      />
+      <Mover gameId={props.gameId} state={moveState} />
 
       <ul>
         {log.map((c, i) => (
